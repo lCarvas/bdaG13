@@ -1,5 +1,5 @@
 {
-  "image": "ghcr.io/astral-sh/uv:python3.14-trixie",
+  "image": "ghcr.io/astral-sh/uv:trixie-slim",
   "features": {
     "ghcr.io/devcontainers-extra/features/apt-get-packages:1": {
       "packages": "starship,coreutils,zip,jq"
@@ -11,9 +11,8 @@
       "installGradle": "false"
     }
   },
-  "onCreateCommand": "grep -qxF 'eval \"$(starship init bash)\"' ~/.bashrc || echo 'eval \"$(starship init bash)\"' >> ~/.bashrc",
+  "onCreateCommand": "echo 'eval \"$(starship init bash)\"' >> ~/.bashrc",
   "postCreateCommand": "uv sync",
-  "postStartCommand": "uv sync",
   "customizations": {
     "vscode": {
       "extensions": [
