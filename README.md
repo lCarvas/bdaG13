@@ -9,6 +9,21 @@
 
 ## Installation
 
+### With Dev Container
+
+If you have docker installed, you can install the Dev Containers VSCode
+extension and use the provided dev container to setup the environment for you.
+The dev container automatically installs the correct Python version, the
+required packages, and Java. You can create and enter the dev container by using
+the command "Dev Containers: Reopen in Container" in the VSCode command pallette
+(CTRL + Shift + P).
+
+### Without Dev Container
+
+Java 21 was used in the project, you must install it and confirm its
+installation path. Replace all references of path in os.environ["JAVA_HOME"] =
+path in the notebooks with the path to your Java 21 installation.
+
 If you're using pip, create a virtual environment with Python 3.14 before
 installing the packages to avoid conflicts with other versions of packages. If
 you're using [uv](https://docs.astral.sh/uv/), this is automatically handled for
@@ -17,13 +32,13 @@ you.
 The code has not been tested on other Python versions, the versions of the
 packages that were used might only be compatible with Python 3.14.
 
-### Using pip
+#### Using pip
 
 ```bash
 pip install -r "requirements.txt"
 ```
 
-### Using uv
+#### Using uv
 
 ```bash
 uv sync
