@@ -1,49 +1,59 @@
 {
-  "image": "ghcr.io/astral-sh/uv:trixie-slim",
-  "features": {
-    "ghcr.io/devcontainers-extra/features/apt-get-packages:1": {
-      "packages": "starship,coreutils,zip,jq"
+    "name": "bdag13-devcontainer",
+    "dockerComposeFile": "./docker-compose.yml",
+    "service": "devcontainer",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}/",
+    "features": {
+        "ghcr.io/devcontainers-extra/features/apt-get-packages:1": {
+            "packages": "starship, openjdk-21-jdk-headless"
+        }
     },
-    "ghcr.io/devcontainers/features/java:1": {
-      "version": "21",
-      "jdkDistro": "open",
-      "installMaven": "false",
-      "installGradle": "false"
+    "overrideCommand": true,
+    "remoteUser": "user",
+    "postStartCommand": "uv sync --all-extras",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "charliermarsh.ruff",
+                "ms-azuretools.vscode-docker",
+                "ms-python.python",
+                "ms-toolsai.jupyter",
+                "tamasfe.even-better-toml"
+            ],
+            "settings": {
+                "remote.autoForwardPorts": false,
+                "editor.bracketPairColorization.enabled": true,
+                "editor.codeActionsOnSave": {
+                    "source.fixAll": "explicit",
+                    "source.organizeImports": "explicit"
+                },
+                "editor.formatOnSave": true,
+                "[python]": {
+                    "editor.defaultFormatter": "charliermarsh.ruff"
+                },
+                "[toml]": {
+                    "editor.formatOnSave": false
+                },
+                "editor.rulers": [
+                    80, 120
+                ],
+                "files.autoSave": "afterDelay",
+                "files.autoSaveDelay": 1000,
+                "jupyter.kernels.excludePythonEnvironments": [
+                    "/usr/local/bin/python"
+                ],
+                "notebook.codeActionsOnSave": {
+                    "notebook.source.fixAll": "explicit",
+                    "notebook.source.organizeImports": "explicit"
+                },
+                "notebook.formatOnSave.enabled": true,
+                "terminal.integrated.env.linux": {
+                    "GIT_EDITOR": "code --wait"
+                },
+                "terminal.integrated.env.mac": {
+                    "GIT_EDITOR": "code --wait"
+                }
+            }
+        }
     }
-  },
-  "onCreateCommand": "echo 'eval \"$(starship init bash)\"' >> ~/.bashrc",
-  "postCreateCommand": "uv sync",
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "charliermarsh.ruff",
-        "GitHub.vscode-github-actions",
-        "GitHub.vscode-pull-request-github",
-        "ms-azuretools.vscode-docker",
-        "ms-python.python",
-        "tamasfe.even-better-toml",
-        "ms-toolsai.jupyter"
-      ],
-      "settings": {
-        "editor.codeActionsOnSave": {
-          "source.fixAll.ruff": "explicit",
-          "source.organizeImports.ruff": "explicit"
-        },
-        "editor.formatOnSave": true,
-        "[python]": {
-          "editor.defaultFormatter": "charliermarsh.ruff"
-        },
-        "[toml]": {
-          "editor.formatOnSave": true
-        },
-        "files.autoSave": "onFocusChange",
-        "notebook.codeActionsOnSave": {
-          "notebook.source.fixAll.ruff": "explicit",
-          "notebook.source.organizeImports.ruff": "explicit"
-        },
-        "notebook.formatOnSave.enabled": true,
-        "python.defaultInterpreterPath": "./.venv/bin/python"
-      }
-    }
-  }
 }
