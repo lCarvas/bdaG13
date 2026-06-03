@@ -9,6 +9,13 @@
 
 ## Installation
 
+The data used in the notebooks can be found in
+<files.diogohlcarvalho.pt/shared/data-G13/data-G13.zip>. Note that this is a
+selfhosted environment, and as such, there may be downtimes. If that is the
+case, a backup can be downloaded from
+<https://liveeduisegiunl-my.sharepoint.com/:u:/g/personal/20221935_novaims_unl_pt/IQBL6M7jnAqpTqWA-fUWDcJ4AbtDCn4XbrjE1svC_ZWCm10?e=UWkWEM>.
+The data must be placed in a data folder in the root of the project.
+
 ### With Dev Container
 
 If you have docker installed, you can install the Dev Containers VSCode
